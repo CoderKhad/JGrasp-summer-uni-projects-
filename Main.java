@@ -1,35 +1,39 @@
 
-import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
+// Main class: Main.java
 public class Main 
 {
 	public static void main(String[] args) 
    {
-		// Step 0: Variable declarations
-		ProductionWorker worker;
-		Scanner keyboard = new Scanner(System.in);
+		// Create objects
+		Dog dog = new Dog("Mongrell", 3, "Golden Retriever");
+		PetDog petDog = new PetDog("Max", 2, "Labrador");
+		AnimalShelter shelter = new AnimalShelter();
+		DogShelter dogShelter = new DogShelter();
+		Kennel kennel = new Kennel();
 
-		// Step 1: Ask user input
-		System.out.print("Enter employee name: ");
-		String name = keyboard.nextLine();
-		System.out.print("Enter employee number: ");
-		int number = keyboard.nextInt();
-		System.out.print("Enter hire date (YYYY-MM-DD): ");
-		String hireDate = keyboard.next();
-		System.out.print("Enter shift (1 for day, 2 for night): ");
-		int shift = keyboard.nextInt();
-		System.out.print("Enter hourly pay rate: ");
-		double hourlyPayRate = keyboard.nextDouble();
+		// Test polymorphism
+		kennel.addAnimal(dog);
+		kennel.addAnimal(petDog);
 
-		// Step 2: List of operations
-		worker = new ProductionWorker(name, number, hireDate, shift, hourlyPayRate);
+		// Test method overloading
+		shelter.adopt(dog);
+		shelter.adopt(petDog);
 
-		// Step 3: Display
-		System.out.println("Employee Information:");
-		System.out.println("Name: " + worker.getName());
-		System.out.println("Number: " + worker.getNumber());
-		System.out.println("Hire Date: " + worker.getHireDate());
-		System.out.println("Shift: " + worker.getShift());
-		System.out.println("Hourly Pay Rate: " + worker.getHourlyPayRate());
+		// Test method overriding
+		dogShelter.adopt(dog);
+
+		// Test static method
+		Utility.printMessage();
+
+		// Test aggregation
+		kennel.addDog(dog);
+		kennel.addDog(petDog);
+
+		// Print results
+		System.out.println(kennel.getAnimals());
+		System.out.println(kennel.getDogs());
 	}
 }
